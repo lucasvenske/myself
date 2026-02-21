@@ -1,0 +1,78 @@
+<div class="relative flex items-center justify-center min-h-screen bg-background">
+  <!-- Top right dark mode button -->
+  <div class="absolute top-4 right-4">
+    <button z-button zType="default" (click)="toggleTheme()" size="icon"
+      [attr.aria-label]="getCurrentTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+      @if (getCurrentTheme() === 'dark') {
+      <ng-icon name="heroSun" size="24"></ng-icon>
+      } @else {
+      <ng-icon name="heroMoon" size="24"></ng-icon>
+      }
+    </button>
+  </div>
+  <!-- Login card -->
+  <z-card class="w-full max-w-sm" zTitle="Login to your account"
+    zDescription="Enter your email below to login to your account">
+    <form (submit)="onSubmit($event)" class="space-y-4">
+      @if (wrongCredentials()) {
+      <z-form-message zType="error" class="block">Invalid email or password. Please try again.</z-form-message>
+      }
+      <z-form-field>
+        <label z-form-label zRequired for="user">Email</label>
+        <z-form-control>
+          <input
+            z-input
+            id="user"
+            type="email"
+            placeholder="john.doe@example.com"
+            [formField]="loginForm.user"
+            [zStatus]="loginForm.user().invalid() && loginForm.user().touched() ? 'error' : undefined"
+          />
+        </z-form-control>
+        @if (loginForm.user().touched() && loginForm.user().invalid()) {
+          @for (error of loginForm.user().errors(); track error.kind) {
+          <z-form-message zType="error">{{ error.message }}</z-form-message>
+          }
+        } @else {
+        <z-form-message>We'll use this for account notifications.</z-form-message>
+        }
+      </z-form-field>
+      <z-form-field>
+        <label z-form-label zRequired for="password">Password</label>
+        <z-form-control>
+          <input
+            z-input
+            id="password"
+            type="password"
+            placeholder="Create a password"
+            [formField]="loginForm.password"
+            [zStatus]="loginForm.password().invalid() && loginForm.password().touched() ? 'error' : undefined"
+          />
+        </z-form-control>
+        @if (loginForm.password().touched() && loginForm.password().invalid()) {
+          @for (error of loginForm.password().errors(); track error.kind) {
+          <z-form-message zType="error">{{ error.message }}</z-form-message>
+          }
+        } @else {
+        <z-form-message zType="default">Enter your password.</z-form-message>
+        }
+      </z-form-field>
+      <div class="space-y-2">
+        <button
+          z-button
+          zType="default"
+          class="w-full"
+          type="submit"
+          [zDisabled]="loginForm().invalid()"
+          [zLoading]="loading()">
+          @if (!loading()) {
+          <span>Login</span>
+          } @else {
+          <span>Logging in...</span>
+          }
+        </button>
+        <button z-button zType="outline" class="w-full" type="button">Login with Google</button>
+      </div>
+    </form>
+  </z-card>
+</div>

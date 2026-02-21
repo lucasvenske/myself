@@ -1,0 +1,60 @@
+---
+description: Project folder architecture - objective-based structure with core and features
+alwaysApply: true
+---
+
+# Project Architecture Rules
+
+## General Philosophy
+
+This project must follow an **objective-based structure**, not a type-based structure.
+
+Resources must be grouped by **business or functional purpose**, not by file type.
+
+---
+
+# Folder Responsibilities
+
+## Core
+
+The `core` folder contains resources that are:
+
+- Registered inside `app.config.ts`
+- Used directly by `app.component.ts`
+- Used directly by `app.component.html`
+- Global application-level resources
+
+Examples of core resources:
+
+- Global services
+- Interceptors
+- Guards
+- Application-wide configuration
+- Global state or initialization logic
+
+---
+
+## Features
+
+The `features` folder contains application pages.
+
+Rules:
+
+- Each page must have its own nested folder
+- Each feature represents a functional screen or business flow
+
+Examples:
+
+- `features/dashboard`
+- `features/settings`
+- `features/user-profile`
+
+---
+
+## Shared
+
+The `shared` folder contains reusable resources used across multiple features:
+
+- `shared/user/models`
+- `shared/user/services`
+- `shared/user/components`

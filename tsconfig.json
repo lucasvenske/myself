@@ -13,7 +13,19 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/app/*"
+      ],
+      "@ng-doc/generated": [
+        "./ng-doc/myself/index.ts"
+      ],
+      "@ng-doc/generated/*": [
+        "./ng-doc/myself/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

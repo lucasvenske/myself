@@ -1,7 +1,7 @@
 ---
-context: true
-priority: high
-scope: project
+description: Angular and TypeScript best practices for components, templates, services, state management, and accessibility
+globs: "**/*.ts, **/*.html"
+alwaysApply: false
 ---
 
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
